@@ -122,7 +122,7 @@ def compress_via_paritok(
                 "query": "Find vulnerabilities in this code",
                 "kind": "file_read"
             },
-            timeout=30,
+            timeout=120,
         )
         response.raise_for_status()
         data = response.json()
