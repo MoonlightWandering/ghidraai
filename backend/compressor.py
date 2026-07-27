@@ -118,16 +118,16 @@ def compress_via_paritok(
                 "Content-Type": "application/json",
             },
             json={
-                "text": cleaned_code,
-                "mode": "aggressive",
-                "preserve_semantics": True,
+                "content": cleaned_code,
+                "query": "Find vulnerabilities in this code",
+                "kind": "file_read"
             },
             timeout=30,
         )
         response.raise_for_status()
         data = response.json()
 
-        compressed_text = data.get("compressed_text", data.get("text", cleaned_code))
+        compressed_text = data.get("compressed", data.get("content", cleaned_code))
         output_tokens = _estimate_tokens(compressed_text)
         elapsed_ms = (time.time() - start_time) * 1000
 
