@@ -21,7 +21,7 @@ from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 from extractor import extract_functions
 from compressor import clean_decompiled_code, compress_via_paritok, calculate_telemetry

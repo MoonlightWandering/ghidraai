@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   Brain,
@@ -11,7 +10,6 @@ import {
   Binary,
   Cpu,
   Eye,
-  ExternalLink,
 } from "lucide-react";
 import UploadZone from "@/components/UploadZone";
 
@@ -20,37 +18,31 @@ const features = [
     icon: Binary,
     title: "Binary Decompilation",
     description: "PyGhidra-powered headless analysis extracts pseudo-C code, function addresses, and symbols from any executable.",
-    color: "#22d3ee",
   },
   {
     icon: Zap,
     title: "Paritok Compression",
     description: "Token reduction through Paritok's 4B compression model strips noise and reduces LLM costs by up to 74%.",
-    color: "#a3e635",
   },
   {
     icon: Brain,
     title: "AI-Powered Analysis",
     description: "LLM agents reconstruct function intent, identify vulnerabilities, and propose meaningful variable renames.",
-    color: "#c084fc",
   },
   {
     icon: Shield,
     title: "Vulnerability Detection",
     description: "Automatically surfaces buffer overflows, format string bugs, hardcoded secrets, and injection vectors.",
-    color: "#f43f5e",
   },
   {
     icon: Eye,
     title: "Visual Code Review",
     description: "Side-by-side code viewer with syntax highlighting shows original vs compressed decompilation.",
-    color: "#60a5fa",
   },
   {
     icon: Code,
     title: "Ghidra Integration",
     description: "Export analysis as a Ghidra Python script to apply renames and annotations directly in the Ghidra GUI.",
-    color: "#f59e0b",
   },
 ];
 
@@ -64,74 +56,72 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen relative z-10">
       {/* Navigation */}
-      <nav className="flex items-center justify-between px-8 py-5">
-        <div className="flex items-center gap-3">
-          <div
-            className="w-10 h-10 rounded-xl flex items-center justify-center"
-            style={{
-              background: "linear-gradient(135deg, var(--accent-dim), var(--accent))",
-              boxShadow: "0 0 20px rgba(34, 211, 238, 0.3)",
-            }}
-          >
-            <Brain className="w-5 h-5" style={{ color: "#06080d" }} />
-          </div>
-          <span className="text-xl font-bold" style={{ color: "var(--foreground)" }}>
+      <nav className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "var(--border)" }}>
+        <div className="flex items-center gap-2">
+          <Brain className="w-5 h-5" style={{ color: "var(--foreground)" }} />
+          <span className="text-base font-semibold" style={{ color: "var(--foreground)" }}>
             Ghidra-AI
           </span>
         </div>
         <div className="flex items-center gap-6">
-          <a href="#features" className="text-sm transition-colors" style={{ color: "var(--muted)" }}>
+          <a 
+            href="#features" 
+            className="text-sm transition-colors hover:opacity-100" 
+            style={{ color: "var(--muted-foreground)" }}
+          >
             Features
           </a>
-          <a href="#upload" className="text-sm transition-colors" style={{ color: "var(--muted)" }}>
+          <a 
+            href="#upload" 
+            className="text-sm font-medium px-3 py-1.5 rounded-md transition-all"
+            style={{ 
+              background: "var(--foreground)", 
+              color: "var(--background)",
+            }}
+          >
             Get Started
           </a>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="max-w-5xl mx-auto px-8 pt-20 pb-16 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8 fade-in"
+      <section className="max-w-4xl mx-auto px-6 pt-32 pb-20 text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md mb-8 fade-in"
           style={{
-            background: "rgba(34, 211, 238, 0.08)",
-            border: "1px solid rgba(34, 211, 238, 0.2)",
+            background: "var(--surface)",
+            border: "1px solid var(--border)",
           }}>
-          <Cpu className="w-3.5 h-3.5" style={{ color: "var(--accent)" }} />
-          <span className="text-xs font-semibold" style={{ color: "var(--accent)" }}>
+          <Cpu className="w-3.5 h-3.5" style={{ color: "var(--muted-foreground)" }} />
+          <span className="text-xs font-medium" style={{ color: "var(--muted-foreground)" }}>
             Powered by Paritok + Groq
           </span>
         </div>
 
         <h1
-          className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 fade-in"
+          className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight leading-none mb-6 fade-in"
           style={{
-            background: "linear-gradient(135deg, var(--foreground) 0%, var(--accent) 50%, var(--accent-bright) 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
+            color: "var(--foreground)",
             animationDelay: "0.1s",
           }}
         >
-          AI-Powered
-          <br />
-          Reverse Engineering
+          AI-Powered<br />Reverse Engineering
         </h1>
 
         <p
-          className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed fade-in"
-          style={{ color: "var(--muted)", animationDelay: "0.2s" }}
+          className="text-lg max-w-2xl mx-auto mb-12 leading-relaxed fade-in"
+          style={{ color: "var(--muted-foreground)", animationDelay: "0.2s" }}
         >
           Upload any binary. Ghidra decompiles it. Paritok compresses the noise.
-          AI reconstructs the intent. All in one sleek interface.
+          AI reconstructs the intent. All in one interface.
         </p>
 
-        <div className="flex items-center justify-center gap-4 fade-in" style={{ animationDelay: "0.3s" }}>
+        <div className="flex items-center justify-center gap-3 fade-in" style={{ animationDelay: "0.3s" }}>
           <a
             href="#upload"
-            className="px-6 py-3 rounded-xl text-sm font-bold flex items-center gap-2 transition-all duration-300"
+            className="px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2 transition-all hover:opacity-90"
             style={{
-              background: "linear-gradient(135deg, var(--accent-dim), var(--accent))",
-              color: "#06080d",
-              boxShadow: "0 0 30px rgba(34, 211, 238, 0.2)",
+              background: "var(--foreground)",
+              color: "var(--background)",
             }}
           >
             Start Analysis
@@ -140,69 +130,63 @@ export default function LandingPage() {
           <a
             href="https://github.com"
             target="_blank"
-            className="px-6 py-3 rounded-xl text-sm font-semibold flex items-center gap-2 transition-all"
+            className="px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2 transition-all hover:opacity-100"
             style={{
-              background: "rgba(15, 23, 42, 0.6)",
-              color: "var(--foreground)",
-              border: "1px solid rgba(34, 211, 238, 0.15)",
+              background: "transparent",
+              color: "var(--muted-foreground)",
+              border: "1px solid var(--border)",
             }}
           >
-            <ExternalLink className="w-4 h-4" />
+            <Code className="w-4 h-4" />
             View Source
           </a>
         </div>
       </section>
 
       {/* Stats Bar */}
-      <section className="max-w-4xl mx-auto px-8 mb-20">
+      <section className="max-w-4xl mx-auto px-6 mb-24">
         <div
-          className="glass-card p-6 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center"
+          className="card p-8 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center"
         >
           {[
-            { value: "74%", label: "Token Reduction", color: "var(--success)" },
-            { value: "<2s", label: "Analysis Time", color: "var(--accent)" },
-            { value: "6+", label: "Vuln Categories", color: "var(--danger)" },
-            { value: "$0.00", label: "Setup Cost", color: "#a3e635" },
+            { value: "74%", label: "Token Reduction" },
+            { value: "<2s", label: "Analysis Time" },
+            { value: "6+", label: "Vuln Categories" },
+            { value: "$0", label: "Setup Cost" },
           ].map((stat) => (
             <div key={stat.label}>
-              <p className="text-2xl font-extrabold" style={{ color: stat.color }}>{stat.value}</p>
-              <p className="text-xs mt-1" style={{ color: "var(--muted)" }}>{stat.label}</p>
+              <p className="text-3xl font-bold mb-1" style={{ color: "var(--foreground)" }}>{stat.value}</p>
+              <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>{stat.label}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Features Grid */}
-      <section id="features" className="max-w-5xl mx-auto px-8 mb-20">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--foreground)" }}>
+      <section id="features" className="max-w-5xl mx-auto px-6 mb-24">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4" style={{ color: "var(--foreground)" }}>
             Everything You Need
           </h2>
-          <p className="text-sm" style={{ color: "var(--muted)" }}>
+          <p className="text-base" style={{ color: "var(--muted-foreground)" }}>
             From binary to insights in minutes, not days.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, i) => (
             <div
               key={feature.title}
-              className="glass-card glow-border p-6 fade-in"
-              style={{ animationDelay: `${i * 0.1}s` }}
+              className="card p-6 fade-in"
+              style={{ animationDelay: `${i * 0.05}s` }}
             >
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-                style={{
-                  background: `${feature.color}15`,
-                  border: `1px solid ${feature.color}30`,
-                }}
-              >
-                <feature.icon className="w-5 h-5" style={{ color: feature.color }} />
+              <div className="mb-4">
+                <feature.icon className="w-5 h-5" style={{ color: "var(--foreground)" }} />
               </div>
-              <h3 className="text-sm font-bold mb-2" style={{ color: "var(--foreground)" }}>
+              <h3 className="text-base font-semibold mb-2" style={{ color: "var(--foreground)" }}>
                 {feature.title}
               </h3>
-              <p className="text-xs leading-relaxed" style={{ color: "var(--muted)" }}>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--muted-foreground)" }}>
                 {feature.description}
               </p>
             </div>
@@ -211,38 +195,35 @@ export default function LandingPage() {
       </section>
 
       {/* Upload Section */}
-      <section id="upload" className="max-w-2xl mx-auto px-8 pb-20">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--foreground)" }}>
+      <section id="upload" className="max-w-3xl mx-auto px-6 pb-24">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4" style={{ color: "var(--foreground)" }}>
             Ready to Analyze?
           </h2>
-          <p className="text-sm" style={{ color: "var(--muted)" }}>
+          <p className="text-base" style={{ color: "var(--muted-foreground)" }}>
             Drop your binary below to start the AI-powered reverse engineering pipeline.
           </p>
         </div>
 
-        <div className="glass-card p-2">
-          <UploadZone onUploadComplete={handleUploadComplete} />
-        </div>
+        <UploadZone onUploadComplete={handleUploadComplete} />
 
-        <p className="text-center text-[10px] mt-4" style={{ color: "var(--muted)" }}>
-          Binaries are processed locally and never stored permanently.
-          Supported formats: ELF, PE, raw binary.
+        <p className="text-center text-xs mt-6" style={{ color: "var(--muted-foreground)" }}>
+          Binaries are processed securely and never stored permanently. Supported formats: ELF, PE, raw binary.
         </p>
       </section>
 
       {/* Footer */}
       <footer
-        className="px-8 py-6 flex items-center justify-between"
-        style={{ borderTop: "1px solid rgba(34, 211, 238, 0.08)" }}
+        className="px-6 py-8 mt-12 flex items-center justify-between border-t"
+        style={{ borderColor: "var(--border)" }}
       >
         <div className="flex items-center gap-2">
-          <Brain className="w-4 h-4" style={{ color: "var(--accent)" }} />
-          <span className="text-xs font-semibold" style={{ color: "var(--muted)" }}>
+          <Brain className="w-4 h-4" style={{ color: "var(--muted-foreground)" }} />
+          <span className="text-sm font-medium" style={{ color: "var(--muted-foreground)" }}>
             Ghidra-AI
           </span>
         </div>
-        <p className="text-[10px]" style={{ color: "var(--muted)" }}>
+        <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>
           Built with PyGhidra · Paritok · Groq · Next.js
         </p>
       </footer>

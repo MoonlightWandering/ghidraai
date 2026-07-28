@@ -186,36 +186,7 @@ export default function AIInsightsPanel({
           )}
         </div>
 
-        {/* Compression Stats */}
-        {analysis.compression && (
-          <div className="fade-in" style={{ animationDelay: "0.4s" }}>
-            <h4 className="text-xs uppercase tracking-wider font-semibold mb-2" style={{ color: "var(--muted)" }}>
-              Compression
-            </h4>
-            <div className="grid grid-cols-3 gap-2">
-              {[
-                { label: "Input", value: `${analysis.compression.input_tokens}`, color: "var(--foreground)" },
-                { label: "Output", value: `${analysis.compression.output_tokens}`, color: "var(--accent)" },
-                { label: "Saved", value: `${analysis.telemetry.compression_pct}%`, color: "var(--success)" },
-              ].map((stat) => (
-                <div key={stat.label} className="text-center p-2 rounded-lg"
-                  style={{ background: "rgba(15, 23, 42, 0.6)", border: "1px solid rgba(34, 211, 238, 0.08)" }}>
-                  <p className="text-[10px] uppercase tracking-wider" style={{ color: "var(--muted)" }}>{stat.label}</p>
-                  <p className="text-sm font-bold mt-0.5" style={{ color: stat.color }}>{stat.value}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
 
-        {/* Meta info */}
-        {ai._meta && (
-          <div className="fade-in text-[10px] flex items-center gap-2" style={{ color: "var(--muted)", animationDelay: "0.5s" }}>
-            <span>Model: {ai._meta.model}</span>
-            <span>•</span>
-            <span>Provider: {ai._meta.provider}</span>
-          </div>
-        )}
       </div>
 
       {/* Export Button */}

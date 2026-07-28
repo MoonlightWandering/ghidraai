@@ -97,7 +97,7 @@ export default function UploadZone({ onUploadComplete }: UploadZoneProps) {
 
   return (
     <div
-      className={`upload-zone p-12 text-center transition-all duration-300 ${
+      className={`upload-zone p-16 text-center transition-all ${
         isDragOver ? "drag-over" : ""
       }`}
       onDragOver={handleDragOver}
@@ -115,9 +115,9 @@ export default function UploadZone({ onUploadComplete }: UploadZoneProps) {
 
       {isUploading ? (
         <div className="fade-in">
-          <Loader2 className="w-12 h-12 mx-auto mb-4 text-accent animate-spin" style={{ color: "var(--accent)" }} />
-          <p className="text-lg font-semibold mb-2" style={{ color: "var(--foreground)" }}>
-            Uploading {selectedFile?.name}...
+          <Loader2 className="w-10 h-10 mx-auto mb-4 animate-spin" style={{ color: "var(--foreground)" }} />
+          <p className="text-base font-medium mb-1" style={{ color: "var(--foreground)" }}>
+            Uploading {selectedFile?.name}
           </p>
           <div className="progress-bar max-w-xs mx-auto mt-4">
             <div
@@ -125,33 +125,36 @@ export default function UploadZone({ onUploadComplete }: UploadZoneProps) {
               style={{ width: `${uploadProgress}%` }}
             />
           </div>
-          <p className="text-sm mt-2" style={{ color: "var(--muted)" }}>
+          <p className="text-sm mt-3" style={{ color: "var(--muted-foreground)" }}>
             {uploadProgress < 100 ? "Uploading binary..." : "Starting decompilation..."}
           </p>
         </div>
       ) : (
         <>
-          <div className="mb-6 relative inline-block">
-            <div className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto"
-              style={{ background: "rgba(34, 211, 238, 0.1)", border: "1px solid rgba(34, 211, 238, 0.2)" }}>
-              <Upload className="w-8 h-8" style={{ color: "var(--accent)" }} />
+          <div className="mb-8">
+            <div className="w-16 h-16 rounded-lg flex items-center justify-center mx-auto transition-all"
+              style={{ 
+                background: "var(--surface)", 
+                border: "1px solid var(--border)" 
+              }}>
+              <Upload className="w-7 h-7" style={{ color: "var(--muted-foreground)" }} />
             </div>
           </div>
-          <h3 className="text-xl font-semibold mb-2" style={{ color: "var(--foreground)" }}>
+          <h3 className="text-lg font-semibold mb-2" style={{ color: "var(--foreground)" }}>
             Drop your binary here
           </h3>
-          <p className="mb-4" style={{ color: "var(--muted)" }}>
+          <p className="text-sm mb-6" style={{ color: "var(--muted-foreground)" }}>
             or click to browse for executable files
           </p>
           <div className="flex items-center justify-center gap-2 flex-wrap">
             {ALLOWED_EXTENSIONS.map((ext) => (
               <span
                 key={ext}
-                className="px-2 py-1 rounded-md text-xs font-mono"
+                className="px-2.5 py-1 rounded text-xs font-mono"
                 style={{
-                  background: "rgba(34, 211, 238, 0.08)",
-                  color: "var(--accent)",
-                  border: "1px solid rgba(34, 211, 238, 0.15)",
+                  background: "var(--surface)",
+                  color: "var(--muted-foreground)",
+                  border: "1px solid var(--border)",
                 }}
               >
                 {ext}
@@ -162,8 +165,11 @@ export default function UploadZone({ onUploadComplete }: UploadZoneProps) {
       )}
 
       {error && (
-        <div className="mt-4 p-3 rounded-lg flex items-center gap-2 fade-in"
-          style={{ background: "rgba(244, 63, 94, 0.1)", border: "1px solid rgba(244, 63, 94, 0.3)" }}>
+        <div className="mt-6 p-3 rounded-lg flex items-center gap-2 fade-in"
+          style={{ 
+            background: "rgba(255, 68, 68, 0.1)", 
+            border: "1px solid rgba(255, 68, 68, 0.2)" 
+          }}>
           <AlertCircle className="w-4 h-4 flex-shrink-0" style={{ color: "var(--danger)" }} />
           <span className="text-sm" style={{ color: "var(--danger)" }}>{error}</span>
         </div>

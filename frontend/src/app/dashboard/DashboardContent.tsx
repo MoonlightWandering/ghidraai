@@ -156,30 +156,30 @@ export default function DashboardContent() {
       <div className="min-h-screen flex flex-col items-center justify-center gap-6 relative z-10">
         <div className="relative">
           <div
-            className="w-20 h-20 rounded-2xl flex items-center justify-center pulse-glow"
+            className="w-16 h-16 rounded-lg flex items-center justify-center"
             style={{
-              background: "rgba(34, 211, 238, 0.1)",
-              border: "1px solid rgba(34, 211, 238, 0.2)",
+              background: "var(--surface)",
+              border: "1px solid var(--border)",
             }}
           >
-            <Brain className="w-10 h-10" style={{ color: "var(--accent)" }} />
+            <Brain className="w-8 h-8" style={{ color: "var(--foreground)" }} />
           </div>
           <Loader2
-            className="absolute -bottom-1 -right-1 w-6 h-6 animate-spin"
-            style={{ color: "var(--accent)" }}
+            className="absolute -bottom-1 -right-1 w-5 h-5 animate-spin"
+            style={{ color: "var(--muted-foreground)" }}
           />
         </div>
         <div className="text-center">
-          <h2 className="text-xl font-bold mb-2" style={{ color: "var(--foreground)" }}>
+          <h2 className="text-lg font-semibold mb-2" style={{ color: "var(--foreground)" }}>
             {jobStatus?.status === "extracting"
               ? "Decompiling Binary..."
               : "Initializing..."}
           </h2>
-          <p className="text-sm" style={{ color: "var(--muted)" }}>
+          <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>
             {jobStatus?.progress || "Connecting to Ghidra..."}
           </p>
           {jobStatus?.filename && (
-            <p className="text-xs mt-2 font-mono" style={{ color: "var(--accent)" }}>
+            <p className="text-xs mt-2 font-mono" style={{ color: "var(--muted-foreground)" }}>
               {jobStatus.filename}
             </p>
           )}
@@ -195,27 +195,27 @@ export default function DashboardContent() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4 relative z-10">
         <div
-          className="w-16 h-16 rounded-2xl flex items-center justify-center"
+          className="w-14 h-14 rounded-lg flex items-center justify-center"
           style={{
-            background: "rgba(244, 63, 94, 0.1)",
-            border: "1px solid rgba(244, 63, 94, 0.2)",
+            background: "rgba(255, 68, 68, 0.1)",
+            border: "1px solid rgba(255, 68, 68, 0.2)",
           }}
         >
-          <Brain className="w-8 h-8" style={{ color: "var(--danger)" }} />
+          <Brain className="w-7 h-7" style={{ color: "var(--danger)" }} />
         </div>
-        <h2 className="text-xl font-bold" style={{ color: "var(--danger)" }}>
+        <h2 className="text-lg font-semibold" style={{ color: "var(--danger)" }}>
           Extraction Failed
         </h2>
-        <p className="text-sm max-w-md text-center" style={{ color: "var(--muted)" }}>
+        <p className="text-sm max-w-md text-center" style={{ color: "var(--muted-foreground)" }}>
           {jobStatus.error || "Unknown error occurred"}
         </p>
         <a
           href="/"
-          className="mt-4 px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2"
+          className="mt-4 px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2 transition-all"
           style={{
-            background: "rgba(34, 211, 238, 0.1)",
-            color: "var(--accent)",
-            border: "1px solid rgba(34, 211, 238, 0.2)",
+            background: "var(--surface)",
+            color: "var(--foreground)",
+            border: "1px solid var(--border)",
           }}
         >
           <ArrowLeft className="w-4 h-4" />
@@ -229,36 +229,29 @@ export default function DashboardContent() {
     <div className="h-screen flex flex-col relative z-10">
       {/* Header */}
       <header
-        className="flex items-center justify-between px-6 py-3"
+        className="flex items-center justify-between px-6 py-4 border-b"
         style={{
-          background: "rgba(6, 8, 13, 0.95)",
-          borderBottom: "1px solid rgba(34, 211, 238, 0.1)",
+          background: "var(--background)",
+          borderColor: "var(--border)",
         }}
       >
         <div className="flex items-center gap-4">
-          <a href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-            <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center"
-              style={{
-                background: "linear-gradient(135deg, var(--accent-dim), var(--accent))",
-              }}
-            >
-              <Brain className="w-4 h-4" style={{ color: "#06080d" }} />
-            </div>
-            <span className="font-bold text-sm" style={{ color: "var(--foreground)" }}>
+          <a href="/" className="flex items-center gap-2 transition-opacity hover:opacity-70">
+            <Brain className="w-5 h-5" style={{ color: "var(--foreground)" }} />
+            <span className="font-semibold text-sm" style={{ color: "var(--foreground)" }}>
               Ghidra-AI
             </span>
           </a>
-          <div className="h-5 w-px" style={{ background: "rgba(34, 211, 238, 0.15)" }} />
-          <span className="text-xs font-mono" style={{ color: "var(--muted)" }}>
+          <div className="h-4 w-px" style={{ background: "var(--border)" }} />
+          <span className="text-sm font-mono" style={{ color: "var(--muted-foreground)" }}>
             {jobStatus.filename}
           </span>
           <span
-            className="text-[10px] px-2 py-0.5 rounded-full font-medium"
+            className="text-xs px-2 py-0.5 rounded font-medium"
             style={{
-              background: "rgba(16, 185, 129, 0.15)",
+              background: "rgba(0, 204, 136, 0.1)",
               color: "var(--success)",
-              border: "1px solid rgba(16, 185, 129, 0.3)",
+              border: "1px solid rgba(0, 204, 136, 0.2)",
             }}
           >
             {jobStatus.function_count} functions
@@ -268,13 +261,13 @@ export default function DashboardContent() {
         <div className="flex items-center gap-2">
           <button
             onClick={refreshTelemetry}
-            className="p-2 rounded-lg transition-colors"
+            className="p-2 rounded-md transition-colors hover:opacity-70"
             style={{
-              background: "rgba(15, 23, 42, 0.6)",
-              border: "1px solid rgba(34, 211, 238, 0.1)",
+              background: "var(--surface)",
+              border: "1px solid var(--border)",
             }}
           >
-            <RefreshCw className="w-4 h-4" style={{ color: "var(--muted)" }} />
+            <RefreshCw className="w-4 h-4" style={{ color: "var(--muted-foreground)" }} />
           </button>
         </div>
       </header>
@@ -285,10 +278,10 @@ export default function DashboardContent() {
       {/* Error Banner */}
       {error && (
         <div
-          className="px-6 py-2 flex items-center justify-between"
+          className="px-6 py-3 flex items-center justify-between border-b"
           style={{
-            background: "rgba(244, 63, 94, 0.1)",
-            borderBottom: "1px solid rgba(244, 63, 94, 0.2)",
+            background: "rgba(255, 68, 68, 0.05)",
+            borderColor: "rgba(255, 68, 68, 0.2)",
           }}
         >
           <span className="text-sm" style={{ color: "var(--danger)" }}>
@@ -296,7 +289,7 @@ export default function DashboardContent() {
           </span>
           <button
             onClick={() => setError(null)}
-            className="text-xs px-2 py-1 rounded"
+            className="text-xs px-2 py-1 rounded hover:opacity-70"
             style={{ color: "var(--danger)" }}
           >
             Dismiss
@@ -308,10 +301,10 @@ export default function DashboardContent() {
       <div className="flex-1 flex overflow-hidden">
         {/* Left: Function Tree */}
         <div
-          className="w-72 flex-shrink-0 overflow-hidden"
+          className="w-80 flex-shrink-0 overflow-hidden border-r"
           style={{
-            background: "rgba(6, 8, 13, 0.6)",
-            borderRight: "1px solid rgba(34, 211, 238, 0.08)",
+            background: "var(--background)",
+            borderColor: "var(--border)",
           }}
         >
           <FunctionTree
@@ -324,7 +317,7 @@ export default function DashboardContent() {
         </div>
 
         {/* Center: Code Viewer */}
-        <div className="flex-1 overflow-hidden" style={{ background: "rgba(6, 8, 13, 0.4)" }}>
+        <div className="flex-1 overflow-hidden" style={{ background: "var(--background)" }}>
           <CodeViewer
             originalCode={currentAnalysis?.original_code || getOriginalCode()}
             compressedCode={currentAnalysis?.compressed_code}
@@ -334,10 +327,10 @@ export default function DashboardContent() {
 
         {/* Right: AI Insights */}
         <div
-          className="w-80 flex-shrink-0 overflow-hidden"
+          className="w-96 flex-shrink-0 overflow-hidden border-l"
           style={{
-            background: "rgba(6, 8, 13, 0.6)",
-            borderLeft: "1px solid rgba(34, 211, 238, 0.08)",
+            background: "var(--background)",
+            borderColor: "var(--border)",
           }}
         >
           <AIInsightsPanel
