@@ -2,9 +2,9 @@
 
 **AI-Powered Reverse Engineering Platform**
 
-Automatically analyze binaries, compress decompiled code with Paritok, and surface AI-reconstructed semantic insights — all in a sleek modern dashboard.
+Automatically analyze binaries, compress decompiled code with Paritok, and surface AI-reconstructed semantic insights — all in a sleek modern dashboard. Built with [Paritok](https://github.com/Paritok-official/paritok-4b-v1).
 
-![Ghidra-AI](https://img.shields.io/badge/status-alpha-cyan) ![Python](https://img.shields.io/badge/python-3.10+-blue) ![Next.js](https://img.shields.io/badge/next.js-15-black) ![License](https://img.shields.io/badge/license-MIT-green)
+[![Built with Paritok](https://img.shields.io/badge/Built%20with-Paritok-1f2d3d)](https://github.com/Paritok-official/paritok-4b-v1) ![Ghidra-AI](https://img.shields.io/badge/status-alpha-cyan) ![Python](https://img.shields.io/badge/python-3.10+-blue) ![Next.js](https://img.shields.io/badge/next.js-15-black) ![License](https://img.shields.io/badge/license-MIT-green)
 
 ## Architecture
 
