@@ -18,6 +18,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, UploadFile, File, BackgroundTasks, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import PlainTextResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
@@ -146,9 +147,8 @@ app.add_middleware(
 # Endpoints
 # ---------------------------------------------------------------------------
 
-@app.get("/")
-async def root():
-    return {"service": "Ghidra-AI", "version": "1.0.0", "status": "running"}
+# ---------------------------------------------------------------------------
+
 
 
 @app.post("/api/upload")
@@ -433,6 +433,19 @@ async def export_ghidra_script(job_id: str):
     script_lines.append('print("Ghidra-AI annotations applied successfully!")')
 
     return "\n".join(script_lines)
+
+
+# ---------------------------------------------------------------------------
+# Static Files (Frontend)
+# ---------------------------------------------------------------------------
+# MUST be mounted last so it doesn't intercept /api routes
+frontend_out = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend", "out")
+if os.path.isdir(frontend_out):
+    app.mount("/", StaticFiles(directory=frontend_out, html=True), name="static")
+else:
+    @app.get("/")
+    async def root():
+        return {"service": "Ghidra-AI", "version": "1.0.0", "status": "running (frontend not built)"}
 
 
 # ---------------------------------------------------------------------------

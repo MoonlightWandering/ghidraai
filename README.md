@@ -92,6 +92,20 @@ npm run dev
 
 Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
 
+## 🚀 Deployment (Render)
+
+This project is configured to run both the frontend and backend together as a single **Web Service** on Render using Docker. The Next.js frontend is automatically built as a static site and served directly by the FastAPI backend.
+
+1. **Create a new Web Service** on [Render](https://render.com/).
+2. Connect your GitHub repository.
+3. Render will automatically detect the `Dockerfile` at the root.
+4. Add the following **Environment Variables** in the Render dashboard:
+   - `LLM_PROVIDER` (e.g., `groq`)
+   - `GROQ_API_KEY` or `OPENAI_API_KEY`
+   - `PARITOK_API_KEY` (optional, for compression)
+   - `PARITOK_API_URL` (optional)
+5. Click **Deploy**. Render will build the Next.js frontend and start the unified Python backend on port `8000`.
+
 ## Environment Variables
 
 ### Backend (`.env`)

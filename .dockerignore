@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+.env
+.env.local
+.venv
+venv
+__pycache__
+*.pyc
+.pytest_cache
+uploads
+ghidra_*
+.git
+.gitignore
