@@ -28,10 +28,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     openjdk-17-jdk-headless \
     && rm -rf /var/lib/apt/lists/*
 
-# Download and install Ghidra
-RUN wget -q https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_12.1.2_build/ghidra_12.1.2_PUBLIC_20260605.zip -O /tmp/ghidra.zip && \
+# Download and install Ghidra (11.3 uses Java 17, perfectly matching our Bookworm image)
+RUN wget -q https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.3_build/ghidra_11.3_PUBLIC_20250205.zip -O /tmp/ghidra.zip && \
     unzip -q /tmp/ghidra.zip -d /opt/ && \
-    mv /opt/ghidra_12.1.2_PUBLIC /opt/ghidra && \
+    mv /opt/ghidra_11.3_PUBLIC /opt/ghidra && \
     rm /tmp/ghidra.zip
 
 # Set Ghidra directory globally
