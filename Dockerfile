@@ -17,19 +17,25 @@ RUN npm run build
 # ========================================
 # Stage 2: Python Backend Runtime
 # ========================================
-FROM python:3.10-bookworm
+FROM eclipse-temurin:17-jdk-jammy
 
 WORKDIR /app
 
-# Install system dependencies if required (e.g., Java for Ghidra)
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install Python 3.10 and pip (Jammy includes Python 3.10 natively)
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 \
+    python3-pip \
+    python3-venv \
     wget \
     unzip \
-    openjdk-17-jdk \
     fontconfig \
     && rm -rf /var/lib/apt/lists/*
 
-# Download and install Ghidra (11.3 uses Java 17, perfectly matching our Bookworm image)
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+# Download and install Ghidra (11.3 uses Java 17, perfectly matching Temurin 17)
 RUN wget -q https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.3_build/ghidra_11.3_PUBLIC_20250205.zip -O /tmp/ghidra.zip && \
     unzip -q /tmp/ghidra.zip -d /opt/ && \
     mv /opt/ghidra_11.3_PUBLIC /opt/ghidra && \
@@ -37,7 +43,7 @@ RUN wget -q https://github.com/NationalSecurityAgency/ghidra/releases/download/G
 
 # Set Ghidra and Java directories globally
 ENV GHIDRA_INSTALL_DIR=/opt/ghidra
-ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+ENV JAVA_HOME=/opt/java/openjdk
 
 # Install Python requirements
 COPY backend/requirements.txt backend/
