@@ -25,7 +25,8 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
     unzip \
-    openjdk-17-jdk-headless \
+    openjdk-17-jdk \
+    fontconfig \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and install Ghidra (11.3 uses Java 17, perfectly matching our Bookworm image)
