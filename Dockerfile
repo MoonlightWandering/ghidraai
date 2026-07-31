@@ -17,7 +17,7 @@ RUN npm run build
 # ========================================
 # Stage 2: Python Backend Runtime
 # ========================================
-FROM python:3.10-slim
+FROM python:3.10-slim-bookworm
 
 WORKDIR /app
 
