@@ -1,13 +1,13 @@
 # ========================================
 # Stage 1: Build Next.js Frontend
 # ========================================
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app/frontend
 
 # Copy frontend source
 COPY frontend/package*.json ./
-RUN npm ci
+RUN npm install
 
 COPY frontend/ ./
 # Build the static export. NEXT_PUBLIC_API_URL is empty so it uses relative path /api
