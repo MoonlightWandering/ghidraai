@@ -17,7 +17,7 @@ RUN npm run build
 # ========================================
 # Stage 2: Python Backend Runtime
 # ========================================
-FROM eclipse-temurin:17-jdk-jammy
+FROM eclipse-temurin:21-jdk-jammy
 
 WORKDIR /app
 
