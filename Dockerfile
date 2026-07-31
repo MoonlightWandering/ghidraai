@@ -29,9 +29,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and install Ghidra
-RUN wget -q https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.4.2_build/ghidra_11.4.2_PUBLIC_20240418.zip -O /tmp/ghidra.zip && \
+RUN wget -q https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_12.1.2_build/ghidra_12.1.2_PUBLIC_20260605.zip -O /tmp/ghidra.zip && \
     unzip -q /tmp/ghidra.zip -d /opt/ && \
-    mv /opt/ghidra_11.4.2_PUBLIC /opt/ghidra && \
+    mv /opt/ghidra_12.1.2_PUBLIC /opt/ghidra && \
     rm /tmp/ghidra.zip
 
 # Set Ghidra directory globally
