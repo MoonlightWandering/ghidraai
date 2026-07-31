@@ -17,7 +17,7 @@ RUN npm run build
 # ========================================
 # Stage 2: Python Backend Runtime
 # ========================================
-FROM python:3.10-slim-bookworm
+FROM python:3.10-bookworm
 
 WORKDIR /app
 
@@ -34,8 +34,9 @@ RUN wget -q https://github.com/NationalSecurityAgency/ghidra/releases/download/G
     mv /opt/ghidra_11.3_PUBLIC /opt/ghidra && \
     rm /tmp/ghidra.zip
 
-# Set Ghidra directory globally
+# Set Ghidra and Java directories globally
 ENV GHIDRA_INSTALL_DIR=/opt/ghidra
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 
 # Install Python requirements
 COPY backend/requirements.txt backend/
