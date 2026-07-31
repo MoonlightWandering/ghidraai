@@ -49,6 +49,9 @@ ENV JAVA_HOME=/opt/java/openjdk
 COPY backend/requirements.txt backend/
 RUN pip install --no-cache-dir -r backend/requirements.txt
 
+# Hard-patch PyGhidra to bypass the LaunchSupport crash on Render by directly returning JAVA_HOME
+RUN sed -i 's/home = subprocess.check_output(cmd, encoding="utf-8", shell=True)/home = "\/opt\/java\/openjdk"/g' /usr/local/lib/python3.10/dist-packages/pyghidra/launcher.py
+
 # Copy backend source
 COPY backend/ backend/
 
