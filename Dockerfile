@@ -21,10 +21,21 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-# Install system dependencies if required (e.g., for Ghidra/PyGhidra if needed, though demo mode works without it)
+# Install system dependencies if required (e.g., Java for Ghidra)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
+    unzip \
+    openjdk-17-jdk-headless \
     && rm -rf /var/lib/apt/lists/*
+
+# Download and install Ghidra
+RUN wget -q https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.4.2_build/ghidra_11.4.2_PUBLIC_20240418.zip -O /tmp/ghidra.zip && \
+    unzip -q /tmp/ghidra.zip -d /opt/ && \
+    mv /opt/ghidra_11.4.2_PUBLIC /opt/ghidra && \
+    rm /tmp/ghidra.zip
+
+# Set Ghidra directory globally
+ENV GHIDRA_INSTALL_DIR=/opt/ghidra
 
 # Install Python requirements
 COPY backend/requirements.txt backend/

@@ -8,3 +8,4 @@ pydantic>=2.8.0
 python-dotenv>=1.0.1
 aiofiles>=24.1.0
 tiktoken>=0.7.0
+pyghidra>=1.1.0
